@@ -1,5 +1,7 @@
 # Experimentos de otimização e algoritmos genéticos
 
-Coloque seus experimentos de algoritmos genéticos nesta pasta.
+Nesta pasta estarão os experimentos de Algoritmos Genéticos do semestre, que terminam em .ipynb, e também estarão arquivos .py que são ferramentas para nos ajudarem a organizar e otimizar a programação desenvolvida.
 
-Esceva um README aqui para guiar o leitor sobre seus experimentos realizados.
+experimento A.01 - busca aleatoria.ipynb: Nesse experimento, fomos introduzidos ao problema de Caixas Binárias, no qual devemos encontrar a maior soma de caixas possíveis sabendo que só podem ter o valor de 0 ou 1. Assim, precisou-se aprender o método mais simples de todos: o de busca aleatoria, o qual se baseia apenas na aleatoriedade para encontrar o melhor indivíduo. Para problemas simples, esse método é eficiente, mas se aumentarmos o problema apenas aumentando a quantidade caixas para digamos, 6 milhões de caixas, já entenderiamos porque esse método é totalmente ineficiente.
+experimento A.02 - busca em grade.ipynb: Nesse experimento, aprendemos a utilizar o método da busca em grade, o qual verifica todas as possíveis combinações de indivíduos para determinar qual é a melhor possível para resolver o problema. Também aplicamos esse método para resolver o problema das caixas binárias, e a grande diferença com o método da busca aleatória é que o método da busca em grade é determinístico, enquanto o método da busca aleatória é um método probabilístico.
+experimento A.03 - algoritmo genetico.ipynb: Nesse experimento, trabalhamos novamente com o problema das caixas binárias. Porém utilizamos os conceitos de cruzamento entre indivíduos e também a mutação de seus genes. De fato, esse algoritmo precisou de muitos mais conceitos para serem utilizados, mas ele consegue resolver problemas mais complexo e de maneira mais eficiente.
