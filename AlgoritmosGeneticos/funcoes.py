@@ -10,6 +10,17 @@ def gene_cb():
     gene = random.choice(lista)
     return gene
 
+def gene_cnb(valor_max_caixa):
+    ''' Gera um gene válido para o problema das caixas não-binárias
+    
+    Args:
+        valor_max_caixa: Valor máximo que a caixa pode assumir.
+        
+    Returns:
+        Um valor de 0 a 'valor_max_caixa' (incluso)
+    '''
+    gene = random.randint(0, valor_max_caixa)
+    return gene
 
 def individuo_cb(n):
     """Gera um individuo para o problema das caixas binárias.
@@ -26,17 +37,21 @@ def individuo_cb(n):
         individuo.append(gene)
     return individuo
 
-
-def funcao_objetivo_cb(individuo):
-    """Computa a função objetivo no problema das caixas binárias.
+def individuo_cnb(numero_genes, valor_max_caixa):
+    '''Gera um individuo válido para o problema das caixas não binárias
     
     Args:
-      individiuo: lista contendo os genes das caixas binárias
-    
-    Return:
-      Um valor representando a soma dos genes do individuo.
-    """
-    return sum(individuo)
+        numero_genes: número de genes na lista que representa o indivíduo
+        valor_max_caixa: Valor máximo que a caixa pode assumir
+        
+    Returns:
+        Uma lista que representa um indivíduo válido para o problema das CNB
+    '''
+    individuo = []
+    for _ in range(numero_genes):
+        gene = gene_cnb(valor_max_caixa)
+        individuo.append(gene)
+    return individuo
 
 def populacao_cb(tamanho, n):
     """Cria uma população no problema das caixas binárias.
@@ -52,6 +67,64 @@ def populacao_cb(tamanho, n):
     for _ in range(tamanho):
         populacao.append(individuo_cb(n))
     return populacao
+
+
+def populacao_cnb(tamanho_populacao,numero_genes,valor_max_caixa):
+    '''Cria uma populacao de indivíduos para o problema das caixas não-binárias
+    
+    Args:
+        tamanho_populacao: número de indivíduos da populacao
+        numero_genes: número de genes do indivíduo
+        valor_max_caixa: Valor máximo que a caixa pode assumir.
+    
+    Returns:
+        uma lista onde cada item representa um indivíduo
+    '''
+    populacao = []
+    for _ in range(tamanho_populacao):
+        individuo = individuo_cnb(numero_genes, valor_max_caixa)
+        populacao.append(individuo)
+    return populacao
+        
+
+
+def funcao_objetivo_cb(individuo):
+    """Computa a função objetivo no problema das caixas binárias.
+    
+    Args:
+      individiuo: lista contendo os genes das caixas binárias
+    
+    Return:
+      Um valor representando a soma dos genes do individuo.
+    """
+    return sum(individuo)
+
+def funcao_objetivo_cnb(individuo):
+    '''Calcula o fitness do individuo para o problema das caixas não-binárias
+    
+    Args:
+        individuo: lista que representa um individuo dentro do problema das CNB.
+        
+    Returns:
+        Um valor que representa o fitness do individuo
+    '''
+    fitness = sum(individuo)
+    return fitness
+
+def funcao_objetivo_pop_cnb(populacao):
+    '''Calcula o fitness da populacao completa
+    
+    Args:
+        populacao: lista com todos os individuos da populacão
+        
+    Returns:
+        Uma lista com o fitness de cada indivíduo em ordem
+    '''
+    fitness_pop = []
+    for individuo in populacao:
+        fitness_ind = funcao_objetivo_cnb(individuo)
+        fitness_pop.append(fitness_ind)
+    return fitness_pop
 
 def selecao_roleta_max(populacao, fitness):
     """Seleciona indivíduos de uma população usando o método da roleta
@@ -111,3 +184,17 @@ def mutacao_cb(individuo):
     gene_a_ser_mutado = random.randint(0, len(individuo)-1)
     individuo[gene_a_ser_mutado] = gene_cb()
     return (individuo)
+
+def mutacao_cnb(individuo, valor_max_caixa):
+    '''Realiza a mutação do indivíduo
+    
+    Args:
+        individuo: individuo que deve sofrer a mutação
+        valor_max_caixa: valor máximo que a caixa pode assumir
+        
+    Returns:
+        individuo que sofreu a mutação
+    '''
+    gene_a_ser_mutado = random.randint(0, len(individuo) - 1)
+    individuo[gene_a_ser_mutado] = gene_cnb(valor_max_caixa)
+    return individuo
