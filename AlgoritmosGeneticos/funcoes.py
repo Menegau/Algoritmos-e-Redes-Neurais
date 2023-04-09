@@ -30,7 +30,7 @@ def funcao_objetivo_himmelblau(individuo):
         Um valor representando o valor da função para tais genes X e Y.
     """
     x = individuo[0]
-    y = ...
+    y = individuo[1]
     return Himmelblau(x, y)
 
 def gene_him():
@@ -100,11 +100,13 @@ def selecao_torneio_min_him(populacao, fitness, tamanho_torneio=3):
     """
     selecionados = []
 
-    # criamos essa variável para associar cada individuo com seu valor de fitness
-    par_populacao_fitness = list(zip(populacao, fitness))
-
     # vamos fazer len(populacao) torneios! Que comecem os jogos!
-    for _ in range(len(populacao)):
+    par_populacao_fitness = list(zip(populacao, fitness))
+    
+    #print(par_populacao_fitness)
+
+    
+    for p in range(len(populacao)):
         combatentes = random.sample(par_populacao_fitness, tamanho_torneio)
 
         # é assim que se escreve infinito em python
@@ -112,8 +114,8 @@ def selecao_torneio_min_him(populacao, fitness, tamanho_torneio=3):
 
         for par_individuo_fitness in combatentes:
             
-            individuo = par_individuo_fitness[0,1]
-            fit = par_individuo_fitness[2]
+            individuo = par_individuo_fitness[0]
+            fit = par_individuo_fitness[1]
             # queremos o individuo de menor fitness
             if fit < minimo_fitness:
                 selecionado = individuo
@@ -123,6 +125,33 @@ def selecao_torneio_min_him(populacao, fitness, tamanho_torneio=3):
 
     return selecionados 
 
+def funcao_mutacao_him(individuo):
+    """Troca o valor de variáveis dos indivíduos.
+    Args:
+      individuo: uma lista representado um individuo no problema das caixas
+      binárias
+    Return:
+      Um individuo com um gene mutado.
+    """
+    gene_a_ser_mutado = random.randint(0, len(individuo) - 1)
+    individuo[gene_a_ser_mutado] = random.random() * 10
+    return individuo
+    
+def cruzamento_him(pai, mae):
+    """Operador de cruzamento de ponto simples.
+    Args:
+      pai: uma lista representando um individuo
+      mae : uma lista representando um individuo
+    Returns:
+      Duas listas, sendo que cada uma representa um filho dos pais que foram os
+      argumentos.
+    """
+    ponto_de_corte = random.randint(1, len(pai) - 1)
+
+    filho1 = pai[:ponto_de_corte] + mae[ponto_de_corte:]
+    filho2 = mae[:ponto_de_corte] + pai[ponto_de_corte:]
+
+    return filho1, filho2
 
 
 ###############################################################################
@@ -522,6 +551,9 @@ def mutacao_de_troca(individuo):
     individuo[indice1], individuo[indice2] = individuo[indice2], individuo[indice1]
     
     return individuo
+
+
+    
     
 
 
