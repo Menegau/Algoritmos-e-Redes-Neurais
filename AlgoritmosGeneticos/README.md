@@ -1,6 +1,8 @@
 # Experimentos de otimização e algoritmos genéticos
 
-Nesta pasta estarão os experimentos de Algoritmos Genéticos do semestre, que terminam em .ipynb, e também estarão arquivos .py que são ferramentas para nos ajudarem a organizar e otimizar a programação desenvolvida.
+Nesta sessão está os experimentos de Algoritmos Genéticos do semestre, que terminam em .ipynb, e também estarão arquivos .py que são ferramentas para nos ajudarem a organizar e otimizar a programação desenvolvida.
+
+## Experimentos
 
 experimento A.01 - busca aleatoria.ipynb: Nesse experimento, fomos introduzidos ao problema de Caixas Binárias, no qual devemos encontrar a maior soma de caixas possíveis sabendo que só podem ter o valor de 0 ou 1. Assim, precisou-se aprender o método mais simples de todos: o de busca aleatoria, o qual se baseia apenas na aleatoriedade para encontrar o melhor indivíduo. Para problemas simples, esse método é eficiente, mas se aumentarmos o problema apenas aumentando a quantidade caixas para digamos, 6 milhões de caixas, já entenderiamos porque esse método é totalmente ineficiente.
 
@@ -12,4 +14,12 @@ experimento A.04 - caixas nao-binarias: Nesse experimento, foi dado um passo a f
 
 experimento A.05 - descobrindo a senha: Esse experimento teve a premissa muito mais complexa do que dos experimentos anteriores. O interessante dele, na minha opinião, é que conseguimos avaliar uma distância entre os indivíduos (senhas testadas) com a senha real, e fazemos isso ordenando os caracteres com números. Dessa maneira, transformamos o problema de comparar distância de letras para comparar a distância com números. Isso é super útil no que tange programação com problemas que envolvem sentenças e palavras com letras. Esse código, por ser um problema de algorítmo genético, também é probabilistico. Outra coisa importante que aprendemos foi a função de rodeio, a qual compara todos os indivíduos para definir realmente os mais promissores e os piores candidatos. Com isso, podemos cruzar os melhores candidatos de maneira a buscar a solução de maneira mais eficiente.  
 
+<<<<<<< HEAD
 experimento GA.06 - Himmelblau e sua funcao: Esse experimento foi escolhido por mim para ser um experimento
+=======
+experimento A.06 - o caixeiro viajante.ipynb: O problema do caixeiro viajante é diferente dos problemas trabalhados anteriormente. Ao invés de ser trabalhado indivíduos que fundamentalmente são listas numéricas ou listas de string, agora estamos tentando descobrir a menor distância entre *n* pontos no plano cartesiano. O "caixeiro" deve começar em uma dessas cidades, passar por todas as outras e voltar a cidade inicial, sem passar mais de uma vez na mesma cidade (com exceção da inicial). Conseguimos resolver esse problema de maneira muito simples utilizando o código de algoritmo genético, com algumas funções recuperadas de códigos anteriores.
+
+experimento A.07 - aplicando restricoes.ipynb: Esse experimento é interessante pois de certa forma podemos interpretá-lo como um problema de duas variáveis. A mochila precisa conter o maior valor com seus itens porém ela tem um limite de peso. Dessa forma, é fácil ver que se trata de um problema de maximização com restrição.
+
+experimento GA.06 - Himmelblau e sua funcao: Esse experimento foi escolhido por mim porque eu consegui ter ideias de como resolvê-lo sem muitas delongas. O experimento consiste em, utilizando algoritmos genéticos, conseguir encontrar o mínimo da função de Himmelblau. Uma coisa importante para se notar é que essa função tem 4 mínimos globais, uma em cada quadrante do plano cartesiano. Por causa disso, uma função de algoritmo genético poderia ser feita para encontrar cada um dos mínimos globais, mas eu não quis fazer essa aproximação, optando por focar em apenas um dos mínimos, onde ambas as variáveis tem valores positivos. Para resolver esse código, eu reaproveitei algumas funções de outros experimentos, destaco a função de seleção por torneio e as funções de geração de individuo e população do problema de caixas binárias.
+>>>>>>> cc8a7bf9cd09bcc048f812e9ed9044da5e2c274c
