@@ -1,7 +1,95 @@
 import random
+###############################################################################
+#                                 EXPERIMENTO GA-5                            #
+###############################################################################
+
+def individuo_palindromo(tamanho_palavra, letras):
+    """Cria um candidato para o problema dos palíndromos
+    Args:
+      tamanho_senha: inteiro representando o tamanho da senha.
+      letras: letras possíveis de serem sorteadas.
+    Return:
+      Lista com n letras
+    """
+
+    candidato = []
+
+    for n in range(tamanho_palavra):
+        candidato.append(gene_letra(letras))
+    return candidato
+
+def populacao_inicial_palindromo(tamanho, tamanho_palavra, letras):
+    """Cria população inicial no problema do palíndromo
+    Args
+      tamanho: tamanho da população.
+      tamanho_palavra: inteiro representando o tamanho da palíndromo.
+      letras: letras possíveis de serem sorteadas.
+    Returns:
+      Lista com todos os indivíduos da população no problema do palíndromo.
+    """
+    populacao = []
+    for _ in range(tamanho):
+        populacao.append(individuo_palindromo(tamanho_palavra, letras))
+    return populacao
+
+def funcao_objetivo_palindromo(individuo):
+    """Computa a funcao objetivo de um individuo no problema da palíndromo
+    Args:
+      individiuo: lista contendo as letras da palavra
+    Returns:
+      A "distância" entre a palavra candidata e um palíndromo1. Essa distância
+      é medida letra por letra. Quanto mais distante uma letra for da que
+      deveria ser, maior é essa distância. Se a palavra não tem vogais, a diferença também aumentará em 30.
+    """
+    diferenca = 0
+    VOGAIS = "aiueo"
+    
+
+    for letra_sequencia, letra_ao_contrario in zip(individuo, individuo[::-1]):
+        #print(abs(ord(letra_sequencia) - ord(letra_ao_contrario)))
+        diferenca = diferenca + abs(ord(letra_sequencia) - ord(letra_ao_contrario))
+    
+    if any(letras in individuo for letras in VOGAIS) == True:
+        pass
+    else:
+        diferenca = diferenca + 30
+    
+    
+    return diferenca
+
+
+def funcao_objetivo_pop_palindromo(populacao):
+    """Computa a funcao objetivo de uma populaçao no problema da senha.
+
+    Args:
+      populacao: lista com todos os individuos da população
+      senha_verdadeira: a senha que você está tentando descobrir
+
+    Returns:
+      Lista contendo os valores da métrica de distância entre as palavras candidatas e os palíndromos.
+    """
+    resultado = []
+
+    for individuo in populacao:
+        resultado.append(funcao_objetivo_palindromo(individuo))
+    return resultado
+
+
+def mutacao_palindromo(individuo, letras):
+    """Realiza a mutação de um gene no problema dos palíndromos.
+    Args:
+      individuo: uma lista representado um individuo no problema da senha
+      letras: letras possíveis de serem sorteadas.
+    Return:
+      Um individuo (candidato) com um gene mutado.
+    """
+    gene = random.randint(0, len(individuo) - 1)
+    individuo[gene] = gene_letra(letras)
+    return individuo
+
 
 ###############################################################################
-#                                 EXPERIMENTO                                 #
+#                                 EXPERIMENTO GA-6                            #
 ###############################################################################
 
 
